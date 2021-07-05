@@ -1,5 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 using System.Collections;
+using System.Linq;
 
 namespace KataGrupal
 {
@@ -10,31 +12,33 @@ namespace KataGrupal
             public Hashtable ListAnagrams;
             public Hashtable Index;
            
-           public string[] readTxt(string path){
+           public List<string> readTxt(string path){
 
-            string[] Words = new string[];
-            int i = 0;
+            string line;
+            System.IO.StreamReader file = new System.IO.StreamReader(path);
+            List<string> Words = new List<string>();
+            int o = 0;
                 while ((line = file.ReadLine()) != null)
                 {
-                    Words[i] = line;
-                    i++;
+                    Words[o] = line;
+                    o++;
                 }
-
+            return Words;
            }
            
            
             public void FindAnagrams(string[] words)
             {
                 
-                ListAnagrams = new Hastable();
-                Index = new Hastable();
+                ListAnagrams = new Hashtable();
+                Index = new Hashtable();
 
-                for (int i = 0; i < words; i++)
+                for (int i = 0; i < words.Count(); i++)
                 {
 
                     //Ordenar la palabra
                     string Word = new String(words[i].OrderBy(x => x).ToArray());
-                    
+
                     //Verificar si la palabra se encuentra en el hashtable
                     if (ListAnagrams.ContainsKey(Word))
                     {
@@ -48,16 +52,30 @@ namespace KataGrupal
                         }
                     }else
                     {
-                        ListAnagrams.Add(Word, Words[i]);
+                        ListAnagrams.Add(Word, words[i]);
                     }
                 }
-                }
-            }
+                
+                 //IMPRIMIR LA LISTA DE ANAGRAMAS EN BASE A *INDEX*
+                int a = 0;
+                foreach (DictionaryEntry item in Index)
+                 {
+                    a++;
+                     Console.WriteLine(ListAnagrams[item.Value]);
+                 }
+                Console.WriteLine("cantidad " + a);
         }
+            }
+            
+        
+       
+        
+
 
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
         }
-    }
+    
+}
 }
