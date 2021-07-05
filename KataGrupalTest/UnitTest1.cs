@@ -25,7 +25,7 @@ namespace AnagramTest
         }
 
         [TestMethod]
-        public void NumberOfWords()
+        public void NumOfWords()
         {
             var instance = new Program.Anagram();
             instance.Read(@"../wordlist.txt");
