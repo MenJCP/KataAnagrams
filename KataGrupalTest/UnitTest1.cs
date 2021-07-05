@@ -23,5 +23,13 @@ namespace AnagramTest
             TimeSpan Test = new TimeSpan(0, 0, 0, 2);
             Assert.IsTrue(TimeSpan.Compare(result, Test) < 1);
         }
+
+        [TestMethod]
+        public void NumberOfWords()
+        {
+            var instance = new Program.Anagram();
+            instance.Read(@"../wordlist.txt");
+            Assert.AreEqual(20683, instance.Index.Count);
+        }
     }
 }
