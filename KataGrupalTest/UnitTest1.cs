@@ -28,8 +28,9 @@ namespace AnagramTest
         public void NumOfWords()
         {
             var instance = new Program.Anagram();
-            instance.Read(@"../wordlist.txt");
-            Assert.AreEqual(20683, instance.Index.Count);
+            string[] Words = {"amor","roma","moro","beba","babe"};
+            instance.FindAnagrams(Words);
+            Assert.AreEqual(2, instance.Index.Count);
         }
     }
 }
